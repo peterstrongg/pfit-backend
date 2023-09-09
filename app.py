@@ -49,6 +49,10 @@ def login():
 @app.route("/progress")
 @app.route("/social")
 def dashboard():
+    return render_template("index.html")
+
+@app.route("/api/validate_session", methods=["GET"])
+def validate_session():
     sid = session.get("sid")
     if not sid:
         return redirect("/")
