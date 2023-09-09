@@ -16,33 +16,11 @@ import os
 import json
 
 app = Flask(__name__, static_folder="build/static", template_folder="build")
-app.secret_key = str(os.urandom(12))
-app.permanent_session_lifetime = timedelta(days=7)
-CORS(app, support_credentials=True)
+CORS(app)
 
-@app.route("/", methods=["GET","POST"])
-@app.route("/login", methods=["GET","POST"])
-def login():
-    if request.method == "POST":
-        credentials = json.loads(request.json)
-        username = credentials["username"]
-        password = credentials["password"]
-
-        db = Database("pfit.db")
-        sid = db.get_session_id(username, password)
-        session["sid"] = sid
-
-        if sid > 0:
-            return redirect("/dashboard")
-
-        return render_template("index.html")
-
-    elif request.method == "GET":
-        sid = session.get("sid")
-        if sid:
-            return redirect("/dashboard")
-        return render_template("index.html")
-
+@app.route("/")
+@app.route("/login")
+@app.route("/signup")
 @app.route("/dashboard")
 @app.route("/healthinfo")
 @app.route("/workout")
@@ -51,13 +29,34 @@ def login():
 def dashboard():
     return render_template("index.html")
 
-@app.route("/api/validate_session", methods=["GET"])
-def validate_session():
-    sid = session.get("sid")
-    if not sid:
-        return redirect("/")
+@app.route("/api/login", methods=["POST"])
+def login():
+    credentials = json.loads(request.json)
+    username = credentials["username"]
+    password = credentials["password"]
 
-    return render_template("index.html")
+    db = Database("pfit.db")
+    uid = db.get_user_id(username, password)
+
+    response = jsonify({
+        "sessionId" : uid,
+        "username" : username,
+    })
+
+    return response
+
+@app.route("/api/signup", methods=["POST"])
+def signup():
+    credentials = json.loads(request.json)
+    username = credentials["username"]
+    password = credentials["password"]
+
+    db = Database("pfit.db")
+    uid = db.add_user(username, password)
+    if uid:
+        return make_response(redirect("/login"))
+    else:
+        return ("", 204)
 
 if __name__ == "__main__":
     app.run()
