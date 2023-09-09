@@ -58,5 +58,25 @@ def signup():
     else:
         return ("", 204)
 
+@app.route("/api/garmin", methods=["POST"])
+def garmin():
+    credentials = json.loads(request.json)
+    username = credentials["username"]
+    password = credentials["password"]
+
+    gmn = GarminApi(username, password)
+    step_data = gmn.get_step_data()
+    hr_data = gmn.get_hr_data()
+
+    response = jsonify({
+        "steps" : step_data["steps"],
+        "stepGoal" : step_data["step_goal"],
+        "stepsToGoal" : step_data["step_goal"] - step_data["steps"],
+        "currentHr" : hr_data["current_hr"],
+        "avgRestingHr" : hr_data["avg_resting_hr"], 
+    })
+
+    return response
+
 if __name__ == "__main__":
     app.run()

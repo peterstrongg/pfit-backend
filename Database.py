@@ -47,7 +47,3 @@ class Database:
     # END __hash_password
 
 # END Database Class
-
-db = Database("pfit.db")
-db.curs.execute("SELECT * FROM users")
-print(db.curs.fetchall())
