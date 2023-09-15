@@ -3,9 +3,11 @@ import sqlite3
 db = sqlite3.connect("pfit.db")
 cursor = db.cursor()
 
-q = "SELECT * FROM users"
-cursor.execute(q)
-records = cursor.fetchall()
+def print_table(table_name):
+    cursor.execute("SELECT * FROM " + table_name)
+    records = cursor.fetchall()
+    for r in records:
+        print(r)
 
-for r in records:
-    print(r)
+# Users Table
+print_table("users")
