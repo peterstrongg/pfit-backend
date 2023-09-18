@@ -26,7 +26,8 @@ CORS(app)
 @app.route("/workout")
 @app.route("/progress")
 @app.route("/social")
-def dashboard():
+@app.route("/onerepmax")
+def render_app():
     return render_template("index.html")
 
 @app.route("/api/login", methods=["POST"])
