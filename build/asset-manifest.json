@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.3ecf8ec4.css",
-    "main.js": "/static/js/main.894d624b.js",
+    "main.js": "/static/js/main.472991d2.js",
     "static/media/ProgFitLogo.png": "/static/media/ProgFitLogo.7e63b598c3c68bc4c7ee.png",
     "index.html": "/index.html",
     "main.3ecf8ec4.css.map": "/static/css/main.3ecf8ec4.css.map",
-    "main.894d624b.js.map": "/static/js/main.894d624b.js.map"
+    "main.472991d2.js.map": "/static/js/main.472991d2.js.map"
   },
   "entrypoints": [
     "static/css/main.3ecf8ec4.css",
-    "static/js/main.894d624b.js"
+    "static/js/main.472991d2.js"
   ]
 }
