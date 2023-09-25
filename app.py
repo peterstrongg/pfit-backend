@@ -4,10 +4,8 @@ from flask import (
     request,
     jsonify,
     make_response,
-    session,
     redirect,
 )
-from flask_session import Session
 from flask_cors import CORS
 from datetime import timedelta
 from GarminApi import GarminApi
