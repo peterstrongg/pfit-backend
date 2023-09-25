@@ -14,3 +14,4 @@ def print_table(table_name):
 # print tables
 print_table("users")
 print_table("workout")
+print_table("logging")
