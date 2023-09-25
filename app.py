@@ -77,5 +77,9 @@ def garmin():
 
     return response
 
+@app.route("/api/workouts", methods=["GET"])
+def get_workouts():
+    pass
+
 if __name__ == "__main__":
     app.run()
