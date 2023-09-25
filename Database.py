@@ -29,8 +29,18 @@ class Database:
         )
         self.conn.commit()
         return uid
-
+    
     # END add_user
+
+    def get_exercises(self):
+        self.curs.execute(
+            "SELECT * FROM workout"
+        )
+        return self.curs.fetchall()
+
+
+
+    # Private members
 
     def __hash_password(self, password):
         return sha256(password.encode('utf-8')).hexdigest()
