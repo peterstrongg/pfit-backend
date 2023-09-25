@@ -79,7 +79,13 @@ def garmin():
 
 @app.route("/api/workouts", methods=["GET"])
 def get_workouts():
-    pass
+    db = Database("pfit.db")
+    exercise_list = db.get_exercises()
+    response = []
+    for e in exercise_list:
+        response.append([e[1], e[2]])
+
+    return response
 
 if __name__ == "__main__":
     app.run()
