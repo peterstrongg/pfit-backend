@@ -7,6 +7,18 @@ cursor = db.cursor()
 exercises = [
     ["Bench Press", "Chest"],
     ["Shoulder Press", "Shoulders"],
+    ["Deadlift", "Back"],
+    ["Rows", "Back"],
+    ["Bicep Curls", "Biceps"],
+    ["Lateral Raises","Shoulders"],
+    ["Tricep Pushdown", "Triceps"],
+    ["Barbell Squats", "Upper Legs"],
+    ["Calve Extensions", "Calves"],
+    ["Leg Press", "Upper Legs"],
+    ["Incline Bench Press", "Upper Chest"],
+    ["Decline Bench Press", "Lower Chest"],
+    ["Tricep Extension", "Triceps"],
+    ["Lateral Pulldown", "Back"],
 ]
 
 def get_next_uid():

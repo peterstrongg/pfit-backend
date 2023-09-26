@@ -5,21 +5,22 @@ db = sqlite3.connect("pfit.db")
 cursor = db.cursor()
 
 table_creation_queries = [
-'''
+        # Users table
+''' 
 CREATE TABLE IF NOT EXISTS users (
     uid INTEGER PRIMARY KEY,
     username TEXT UNIQUE,
     password TEXT
 )
-''',
+''',    # Workout list table
 '''
 CREATE TABLE IF NOT EXISTS workout (
     exercise_id INTEGER PRIMARY KEY,
     exercise_name TEXT UNIQUE,
     muscle_group TEXT
 )
-''',
-'''
+''',    # Logging Table
+''' 
 CREATE TABLE IF NOT EXISTS logging (
     workout_id INTEGER PRIMARY KEY,
     user_id INTEGER,
