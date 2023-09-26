@@ -6,6 +6,8 @@ cursor = db.cursor()
 # Add exercises here
 exercises = [
     ["Bench Press", "Chest"],
+    ["Incline Bench Press", "Upper Chest"],
+    ["Decline Bench Press", "Lower Chest"],
     ["Shoulder Press", "Shoulders"],
     ["Deadlift", "Back"],
     ["Rows", "Back"],
@@ -15,8 +17,6 @@ exercises = [
     ["Barbell Squats", "Upper Legs"],
     ["Calve Extensions", "Calves"],
     ["Leg Press", "Upper Legs"],
-    ["Incline Bench Press", "Upper Chest"],
-    ["Decline Bench Press", "Lower Chest"],
     ["Tricep Extension", "Triceps"],
     ["Lateral Pulldown", "Back"],
 ]
