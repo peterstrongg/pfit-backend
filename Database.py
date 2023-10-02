@@ -65,6 +65,8 @@ class Database:
             ])
 
         return history
+
+        
     # Private members
 
     def __hash_password(self, password):
