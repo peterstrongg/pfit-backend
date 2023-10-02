@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS workout (
 ''',    # Logging Table
 ''' 
 CREATE TABLE IF NOT EXISTS logging (
-    workout_id INTEGER PRIMARY KEY,
+    logging_id INTEGER PRIMARY KEY,
+    exercise_id INTEGER,
     user_id INTEGER,
     date DATE,
     sets INT,

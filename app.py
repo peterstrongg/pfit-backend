@@ -16,6 +16,10 @@ import json
 app = Flask(__name__, static_folder="build/static", template_folder="build")
 CORS(app)
 
+db = Database("pfit.db")
+print(db.get_workout_history(1))
+
+
 @app.route("/")
 @app.route("/login")
 @app.route("/signup")
@@ -86,6 +90,25 @@ def get_workouts():
         response.append([e[1], e[2]])
 
     return response
+
+@app.route("/api/log_workout", methods=["POST"])
+def log_workout():
+    workout_data = json.loads(request.json)
+    exercise_name = workout_data["exercise_name"]
+    user_id = workout_data["user_id"]
+    sets = workout_data["sets"]
+    reps = workout_data["reps"]
+    weight = workout_data["weight"]
+    duration = workout_data["duration"]
+
+    db = Database("pfit.db")
+    db.log_workout(exercise_name, user_id, sets, reps, weight, duration)
+
+    return ("OK", 200)
+
+@app.route("/api/workout_history", methods=["POST"])
+def workout_history():
+    pass
 
 if __name__ == "__main__":
     app.run()
