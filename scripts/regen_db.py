@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS workout (
     exercise_name TEXT UNIQUE,
     muscle_group TEXT
 )
-''',    # Logging Table
+''',    # Workout log Table
 ''' 
 CREATE TABLE IF NOT EXISTS logging (
     logging_id INTEGER PRIMARY KEY,
