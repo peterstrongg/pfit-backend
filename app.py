@@ -5,11 +5,13 @@ from flask import (
     jsonify,
     make_response,
     redirect,
+    send_file
 )
 from flask_cors import CORS
 from datetime import timedelta
 from GarminApi import GarminApi
 from Database import Database
+from Graph import Graph
 import os
 import json
 
@@ -114,6 +116,14 @@ def workout_history():
 @app.route("/api/monitor_progress", methods=["POST"])
 def monitor_progress():
     data = json.loads(json.dumps(request.json))
+    user_id = data["user_id"]
+    exercise_name = data["exercise_name"]
 
+    g = Graph(user_id, exercise_name)
+    file_name = g.generate_graph()
+    
+    return send_file(file_name)
+
+    
 if __name__ == "__main__":
     app.run()
