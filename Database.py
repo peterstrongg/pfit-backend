@@ -65,6 +65,16 @@ class Database:
             })
 
         return history
+    
+    def get_workout_history_by_name(self, user_id, ename):
+        eid = self.__get_eid_by_name(ename)
+        self.curs.execute(
+            "SELECT * FROM logging WHERE user_id = ? AND exercise_id = ?",
+            [user_id, eid]
+        )
+        data = self.curs.fetchall()
+
+        return data
 
         
     # Private members

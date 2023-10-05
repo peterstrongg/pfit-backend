@@ -111,5 +111,9 @@ def workout_history():
     
     return history
 
+@app.route("/api/monitor_progress", methods=["POST"])
+def monitor_progress():
+    data = json.loads(json.dumps(request.json))
+
 if __name__ == "__main__":
     app.run()
