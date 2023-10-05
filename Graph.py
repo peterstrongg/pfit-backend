@@ -11,16 +11,13 @@ class Graph:
     def generate_graph(self):
         history = self.__get_history()
 
-        dates = []
-        lift = []
+        dates = np.array([])
+        lift = np.array([])
         for log in history:
-            dates.append(log[3])
-            lift.append(log[6])
+            dates = np.append(dates, log[3])
+            lift = np.append(lift, log[6])
 
-        x = np.array(dates)
-        y = np.array(lift)
-        
-        plt.plot(x, y)
+        plt.plot(dates, lift)
         plt.show()
 
         return history
@@ -33,4 +30,4 @@ class Graph:
 
 
 g = Graph(1, "Deadlift")
-print(g.generate_graph())
+g.generate_graph()
