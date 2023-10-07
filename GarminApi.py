@@ -34,5 +34,3 @@ class GarminApi:
     # END get_hr_data
 
 # END GarminApi Class
-
-

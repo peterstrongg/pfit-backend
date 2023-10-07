@@ -37,5 +37,5 @@ class Graph:
         return fname
 
 
-g = Graph(1, "Deadlift")
-g.generate_graph()
+# g = Graph(1, "Deadlift")
+# g.generate_graph()
