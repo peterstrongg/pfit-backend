@@ -2,17 +2,28 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 from Database import Database
 
 class Graph:
-    def __init__(self, user_id, exercise_name):
+    def __init__(self, user_id=-1, exercise_name=""):
         self.uid = user_id
         self.ename = exercise_name
         self.db = Database("pfit.db")
 
+    def set_uid(self, user_id):
+        self.uid = user_id
+
+    def set_ename(self, exercise_name):
+        self.ename = exercise_name
+
     def generate_graph(self):
         history = self.__get_history()
         file_name = self.__generate_file_name()
+        
+        if os.path.exists(file_name):   # Delete old file before making new graph
+            os.remove(file_name)  
+            print("File deleted")  
 
         dates = np.array([])    # x-axis
         lift = np.array([])     # y-axis
@@ -22,7 +33,7 @@ class Graph:
 
         plt.plot(dates, lift)
         plt.savefig(file_name)
-        # plt.show()
+        plt.clf()               # Clears figure
 
         return file_name
 
@@ -35,7 +46,3 @@ class Graph:
     def __generate_file_name(self):
         fname = "graphs/" + str(self.uid) + "_" + self.ename + ".png"
         return fname
-
-
-# g = Graph(1, "Deadlift")
-# g.generate_graph()

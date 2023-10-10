@@ -113,17 +113,16 @@ def workout_history():
     
     return history
 
-@app.route("/api/monitor_progress", methods=["POST"])
+@app.route("/api/monitor_progress", methods=["GET"])
 def monitor_progress():
-    data = json.loads(json.dumps(request.json))
+    data = request.args
     user_id = data["user_id"]
     exercise_name = data["exercise_name"]
 
     g = Graph(user_id, exercise_name)
     file_name = g.generate_graph()
-    
-    return send_file(file_name)
 
+    return send_file(file_name)
     
 if __name__ == "__main__":
     app.run()
