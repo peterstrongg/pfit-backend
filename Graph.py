@@ -23,7 +23,6 @@ class Graph:
         
         if os.path.exists(file_name):   # Delete old file before making new graph
             os.remove(file_name)  
-          
 
         dates = np.array([])    # x-axis
         lift = np.array([])     # y-axis
