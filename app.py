@@ -64,6 +64,7 @@ def garmin():
     credentials = json.loads(request.json)
     username = credentials["username"]
     password = credentials["password"]
+    # user_id = credentials["user_id"]
 
     gmn = GarminApi(username, password)
     step_data = gmn.get_step_data()
@@ -76,6 +77,8 @@ def garmin():
         "currentHr" : hr_data["current_hr"],
         "avgRestingHr" : hr_data["avg_resting_hr"], 
     })
+
+    db = Database("pfit.db")
 
     return response
 

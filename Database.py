@@ -46,6 +46,17 @@ class Database:
 
         return lid
     
+    def log_garmin(self, user_id, steps, step_goal, current_hr, avg_hr):
+        gid = self.__get_next_uid("garmin")
+        today = datetime.today().strftime("%Y-%m-%d")
+
+        self.curs.execute(
+            "INSERT INTO garmin VALUES(?,?,?,?,?,?,?)",
+            [gid, user_id, today, steps, step_goal, current_hr, avg_hr]
+        )
+
+        return gid
+
     def get_workout_history(self, user_id):
         self.curs.execute(
             "SELECT * FROM logging WHERE user_id = ?",

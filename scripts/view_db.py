@@ -15,3 +15,4 @@ def print_table(table_name):
 print_table("users")
 print_table("workout")
 print_table("logging")
+print_table("garmin")

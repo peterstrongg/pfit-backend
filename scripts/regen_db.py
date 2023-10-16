@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS logging (
 CREATE TABLE IF NOT EXISTS garmin (
     logging_id INTEGER PRIMARY KEY,
     user_id INTEGER,
+    date DATE,
     steps INTEGER,
     step_goal INTEGER,
     current_hr INTEGER,
