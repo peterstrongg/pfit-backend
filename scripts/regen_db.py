@@ -31,6 +31,16 @@ CREATE TABLE IF NOT EXISTS logging (
     weight DECIMAL(5, 2),
     duration_mins INT
 )
+''',    # Garmin Log Table
+'''
+CREATE TABLE IF NOT EXISTS garmin (
+    logging_id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    steps INTEGER,
+    step_goal INTEGER,
+    current_hr INTEGER,
+    avg_resting_hr INTEGER
+)
 '''
 ]
 
