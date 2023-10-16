@@ -79,6 +79,7 @@ def garmin():
     })
 
     db = Database("pfit.db")
+    # db.log_garmin(user_id, step_data["steps"], step_data["step_goal"], hr_data["current_hr"], hr_data["avg_resting_hr"])
 
     return response
 
