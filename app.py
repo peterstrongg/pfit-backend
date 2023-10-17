@@ -64,7 +64,7 @@ def garmin():
     credentials = json.loads(request.json)
     username = credentials["username"]
     password = credentials["password"]
-    # user_id = credentials["user_id"]
+    user_id = credentials["user_id"]
 
     gmn = GarminApi(username, password)
     step_data = gmn.get_step_data()
