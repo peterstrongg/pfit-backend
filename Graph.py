@@ -33,6 +33,9 @@ class Graph:
             dates = np.append(dates, log[3])
             lift = np.append(lift, log[6])
 
+        if len(dates) == 0:                 # Return early if no data
+            return "assets/defaultimage.png"
+
         plt.title(self.ename)
         plt.xlabel("Dates")
         plt.ylabel("Weight (lbs)")
@@ -41,10 +44,7 @@ class Graph:
         plt.savefig(file_name)
         plt.clf()                           # Clears figure
 
-        if len(dates) == 0:
-            return "assets/defaultimage.png"
-        else: 
-            return file_name
+        return file_name
 
 
     # Private Members
