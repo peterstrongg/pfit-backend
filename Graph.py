@@ -21,11 +21,14 @@ class Graph:
         history = self.__get_history()
         file_name = self.__generate_file_name()
         
-        if os.path.exists(file_name):   # Delete old file before making new graph
+        if not (os.path.exists("graphs")):  # Ensures graph directory exists
+            os.makedirs("graphs")
+
+        if os.path.exists(file_name):       # Delete old file before making new graph
             os.remove(file_name)  
 
-        dates = np.array([])    # x-axis
-        lift = np.array([])     # y-axis
+        dates = np.array([])                # x-axis
+        lift = np.array([])                 # y-axis
         for log in history:
             dates = np.append(dates, log[3])
             lift = np.append(lift, log[6])
@@ -33,10 +36,10 @@ class Graph:
         plt.title(self.ename)
         plt.xlabel("Dates")
         plt.ylabel("Weight (lbs)")
-        plt.scatter(dates, lift, color = 'green' )    #Dots
-        plt.plot(dates, lift, 'green')                #Lines
+        plt.scatter(dates, lift, color='green') #Dots
+        plt.plot(dates, lift, 'green')          #Lines
         plt.savefig(file_name)
-        plt.clf()               # Clears figure
+        plt.clf()                           # Clears figure
 
         if len(dates) == 0:
             return "assets/defaultimage.png"
