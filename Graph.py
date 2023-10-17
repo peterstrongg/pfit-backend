@@ -36,6 +36,7 @@ class Graph:
         if len(dates) == 0:                 # Return early if no data
             return "assets/defaultimage.png"
 
+        # Generating Graph
         plt.title(self.ename)
         plt.xlabel("Dates")
         plt.ylabel("Weight (lbs)")
