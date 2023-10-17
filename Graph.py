@@ -30,11 +30,18 @@ class Graph:
             dates = np.append(dates, log[3])
             lift = np.append(lift, log[6])
 
-        plt.plot(dates, lift)
+        plt.title(self.ename)
+        plt.xlabel("Dates")
+        plt.ylabel("Weight (lbs)")
+        plt.scatter(dates, lift, color = 'green' )    #Dots
+        plt.plot(dates, lift, 'green')                #Lines
         plt.savefig(file_name)
         plt.clf()               # Clears figure
 
-        return file_name
+        if len(dates) == 0:
+            return "assets/defaultimage.png"
+        else: 
+            return file_name
 
 
     # Private Members
