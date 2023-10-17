@@ -20,9 +20,6 @@ class Graph:
     def generate_graph(self):
         history = self.__get_history()
         file_name = self.__generate_file_name()
-        
-        if not (os.path.exists("graphs")):  # Ensures graph directory exists
-            os.makedirs("graphs")
 
         if os.path.exists(file_name):       # Delete old file before making new graph
             os.remove(file_name)  
@@ -40,8 +37,8 @@ class Graph:
         plt.title(self.ename)
         plt.xlabel("Dates")
         plt.ylabel("Weight (lbs)")
-        plt.scatter(dates, lift, color='green') #Dots
-        plt.plot(dates, lift, 'green')          #Lines
+        plt.scatter(dates, lift, color='green') # Dots
+        plt.plot(dates, lift, 'green')          # Lines
         plt.savefig(file_name)
         plt.clf()                           # Clears figure
 

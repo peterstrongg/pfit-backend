@@ -14,6 +14,8 @@ from Database import Database
 from Graph import Graph
 import os
 import json
+import threading
+from lib import *
 
 app = Flask(__name__, static_folder="build/static", template_folder="build")
 CORS(app)
@@ -126,8 +128,12 @@ def monitor_progress():
     g = Graph(user_id, exercise_name)
     file_name = g.generate_graph()
 
+    cleanup_thread = threading.Thread(target=del_graph, args=(file_name,))
+    cleanup_thread.start()
+
     return send_file(file_name)
     
 if __name__ == "__main__":
+    startup_routine()
     app.run()
     
