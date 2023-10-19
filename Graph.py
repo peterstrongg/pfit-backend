@@ -39,6 +39,8 @@ class Graph:
         plt.ylabel("Weight (lbs)")
         plt.scatter(dates, lift, color='green') # Dots
         plt.plot(dates, lift, 'green')          # Lines
+        plt.xticks(rotation=-60)
+        plt.subplots_adjust(bottom=0.3)
         plt.savefig(file_name)
         plt.clf()                           # Clears figure
 
