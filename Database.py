@@ -67,6 +67,7 @@ class Database:
         history = []
         for workout in data:
             history.append({
+                "logId" : workout[0],
                 "exerciseName" : self.__get_exercise_name_by_eid(workout[1]),    # Exercise name
                 "date" : workout[3],     # date
                 "sets" : workout[4],     # sets

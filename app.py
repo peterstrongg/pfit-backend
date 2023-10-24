@@ -116,6 +116,8 @@ def workout_history():
 
     db = Database("pfit.db")
     history = db.get_workout_history(user_id)
+
+    print(history)
     
     return history
 
