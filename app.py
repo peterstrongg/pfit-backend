@@ -116,8 +116,6 @@ def workout_history():
 
     db = Database("pfit.db")
     history = db.get_workout_history(user_id)
-
-    print(history)
     
     return history
 
@@ -134,6 +132,17 @@ def monitor_progress():
     cleanup_thread.start()
 
     return send_file(file_name)
+
+@app.route("/api/share_workout", methods=["POST"])
+def share_workout():
+    data = json.loads(json.dumps(request.json))
+    user_id = data["user_id"]
+    workout_id = data["workout_id"]
+    comment = data["comment"]
+
+    print(user_id, workout_id, comment)
+
+    return("OK", 200)
     
 if __name__ == "__main__":
     startup_routine()
