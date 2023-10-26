@@ -42,6 +42,14 @@ CREATE TABLE IF NOT EXISTS garmin (
     current_hr INTEGER,
     avg_resting_hr INTEGER
 )
+''',     # Share Workout Table
+'''
+CREATE TABLE IF NOT EXISTS share_workout (
+    sw_id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    logging_id INTEGER,
+    comment TEXT
+)
 '''
 ]
 
