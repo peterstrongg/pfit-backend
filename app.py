@@ -133,16 +133,25 @@ def monitor_progress():
 
     return send_file(file_name)
 
-@app.route("/api/share_workout", methods=["POST"])
+@app.route("/api/share_workout", methods=["GET", "POST"])
 def share_workout():
-    data = json.loads(json.dumps(request.json))
-    user_id = data["user_id"]
-    workout_id = data["workout_id"]
-    comment = data["comment"]
+    if request.method == "POST":
+        data = json.loads(json.dumps(request.json))
+        user_id = data["user_id"]
+        workout_id = data["workout_id"]
+        comment = data["comment"]
 
-    print(user_id, workout_id, comment)
+        print(user_id, workout_id, comment)
 
-    return("OK", 200)
+        db = Database("pfit.db")
+        db.share_workout(user_id, workout_id, comment)
+
+        return("OK", 200)
+    
+    elif request.method == "GET":
+        db = Database("pfit.db")
+        sw = db.get_shared_workouts()
+        return sw
     
 if __name__ == "__main__":
     startup_routine()

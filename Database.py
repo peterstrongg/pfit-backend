@@ -54,6 +54,18 @@ class Database:
             "INSERT INTO garmin VALUES(?,?,?,?,?,?,?)",
             [gid, user_id, today, steps, step_goal, current_hr, avg_hr]
         )
+        self.conn.commit()
+
+        return gid
+    
+    def share_workout(self, uid, wid, comment):
+        gid = self.__get_next_uid("share_workout")
+
+        self.curs.execute(
+            "INSERT INTO share_workout VALUES(?,?,?,?)",
+            [gid, uid, wid, comment]  
+        )
+        self.conn.commit()
 
         return gid
 
@@ -87,8 +99,26 @@ class Database:
         data = self.curs.fetchall()
 
         return data
+    
+    def get_shared_workouts(self):
+        self.curs.execute("SELECT * FROM share_workout")
+        sw_data = self.curs.fetchall()
 
-        
+        sw_final = []        
+        for row in sw_data:
+            log = self.__get_log_by_lid(row[2])
+            sw_final.append([
+                self.__get_uname_by_uid(row[1]),            # Username
+                log[0][3],                                  # Date
+                self.__get_exercise_name_by_eid(log[0][1]), # Exercise Name
+                log[0][4],                                  # Sets
+                log[0][5],                                  # Reps
+                log[0][6],                                  # Weight
+                row[3],                                     # Comment
+            ])
+
+        return sw_final
+      
     # Private members
 
     def __hash_password(self, password):
@@ -103,6 +133,14 @@ class Database:
             return data[-1][0] + 1
         return 1
     
+    def __get_uname_by_uid(self, uid):
+        self.curs.execute(
+            "SELECT username FROM users WHERE uid = ?",
+            [uid]
+        )
+        data = self.curs.fetchall()
+        return data[0][0]
+
     def __get_eid_by_name(self, exercise_name):
         self.curs.execute(
             "SELECT exercise_id FROM workout WHERE exercise_name = ?",
@@ -118,3 +156,11 @@ class Database:
         )
         data = self.curs.fetchall()
         return data[0][0]
+    
+    def __get_log_by_lid(self, lid):
+        self.curs.execute(
+            "SELECT * FROM logging WHERE logging_id = ?",
+            [lid]
+        )
+        data = self.curs.fetchall()
+        return data
