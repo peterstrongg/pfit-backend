@@ -141,8 +141,6 @@ def share_workout():
         workout_id = data["workout_id"]
         comment = data["comment"]
 
-        print(user_id, workout_id, comment)
-
         db = Database("pfit.db")
         db.share_workout(user_id, workout_id, comment)
 
