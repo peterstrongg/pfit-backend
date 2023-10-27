@@ -14,7 +14,7 @@ def startup_routine():
                 print("[+] Deleting", f, "...")
                 os.remove("graphs/" + f)
 
-    print("[+] Startup routine completed successfully.\n\n")
+    print("[+] Startup routine completed successfully.\n")
         
 
 def del_graph(graph_name):
