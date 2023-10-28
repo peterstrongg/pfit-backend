@@ -50,6 +50,13 @@ CREATE TABLE IF NOT EXISTS share_workout (
     logging_id INTEGER,
     comment TEXT
 )
+''',    # Tip Table
+'''
+CREATE TABLE IF NOT EXISTS tips (
+    tip_id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    tip TEXT
+)
 '''
 ]
 
