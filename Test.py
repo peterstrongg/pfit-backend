@@ -1,9 +1,7 @@
 import unittest
-import sqlite3
+from Database import Database
 
-conn = sqlite3.connect("../pfit.db")
-curs = conn.cursor()
-
+db = Database("pfit.db")
 
 class TestDatabase(unittest.TestCase):
     pass
