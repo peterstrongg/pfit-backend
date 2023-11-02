@@ -12,10 +12,12 @@ from datetime import timedelta
 from GarminApi import GarminApi
 from Database import Database
 from Graph import Graph
-import os
 import json
 import threading
-from lib import *
+from lib import (
+    startup_routine, 
+    del_graph
+)
 
 app = Flask(__name__, static_folder="build/static", template_folder="build")
 CORS(app)
