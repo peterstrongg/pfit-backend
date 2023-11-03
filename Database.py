@@ -68,6 +68,17 @@ class Database:
         self.conn.commit()
 
         return gid
+    
+    def share_tip(self, uid, tip):
+        tid = self.__get_next_uid("tips")
+
+        self.curs.execute(
+            "INSERT INTO tips VALUES(?,?,?)",
+            [tid, uid, tip]
+        )
+        self.conn.commit()
+
+        return tid
 
     def get_workout_history(self, user_id):
         self.curs.execute(
@@ -118,6 +129,11 @@ class Database:
             ])
 
         return sw_final
+    
+    def get_tips(self):
+        self.curs.execute("SELECT * FROM tips")
+        tips = self.curs.fetchall()
+        return tips
       
     # Private members
 
@@ -164,3 +180,6 @@ class Database:
         )
         data = self.curs.fetchall()
         return data
+    
+# db = Database("pfit.db")
+# db.share_tip(2, "Test tip")

@@ -8,7 +8,6 @@ from flask import (
     send_file
 )
 from flask_cors import CORS
-from datetime import timedelta
 from GarminApi import GarminApi
 from Database import Database
 from Graph import Graph
@@ -152,6 +151,23 @@ def share_workout():
         db = Database("pfit.db")
         sw = db.get_shared_workouts()
         return sw
+    
+@app.route("/api/tips", methods=["GET","POST"])
+def tips():
+    if request.method == "POST":
+        data = json.loads(json.dumps(request.json))
+        user_id = data["user_id"]
+        tip = data["tip"]
+
+        db = Database("pfit.db")
+        db.share_tip(user_id, tip)
+
+        return("OK", 200)
+    
+    elif request.method == "GET":
+        db = Database("pfit.db")
+        tips = db.get_tips()
+        return tips
     
 if __name__ == "__main__":
     startup_routine()
