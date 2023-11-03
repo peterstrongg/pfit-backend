@@ -29,6 +29,8 @@ CORS(app)
 @app.route("/workout")
 @app.route("/progress")
 @app.route("/social")
+@app.route("/social/sharedworkouts")
+@app.route("/social/tips")
 @app.route("/onerepmax")
 def render_app():
     return render_template("index.html")
