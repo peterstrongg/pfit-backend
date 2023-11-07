@@ -170,7 +170,15 @@ def tips():
     elif request.method == "GET":
         db = Database("pfit.db")
         tips = db.get_tips()
-        return tips
+
+        uname = "Progression Fit"
+        tip = ""
+        for row in tips:
+            if row[1] > 0:
+                uname = db.get_uname_by_uid(row[1])
+            tip = row[2]
+
+        return ({"user" : uname, "tip" : tip})
     
 @app.route("/api/randomtip", methods=["GET"])
 def random_tip():
