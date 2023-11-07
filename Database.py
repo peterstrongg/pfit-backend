@@ -134,6 +134,14 @@ class Database:
         self.curs.execute("SELECT * FROM tips")
         tips = self.curs.fetchall()
         return tips
+    
+    def get_uname_by_uid(self, uid):
+        self.curs.execute(
+            "SELECT username FROM users WHERE uid = ?",
+            [uid]
+        )
+        data = self.curs.fetchall()
+        return data[0][0]
       
     # Private members
 

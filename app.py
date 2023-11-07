@@ -13,6 +13,7 @@ from Database import Database
 from Graph import Graph
 import json
 import threading
+from random import randrange
 from lib import (
     startup_routine, 
     del_graph
@@ -175,7 +176,13 @@ def tips():
 def random_tip():
     db = Database("pfit.db")
     tips = db.get_tips()
-    return tips
+
+    random_tip = tips[randrange(len(tips))]
+    user = "Progression Fit"
+    if random_tip[1] > 0:
+        user = db.get_uname_by_uid(random_tip[1])
+
+    return({"user" : user, "tip" : random_tip[2]})
     
 if __name__ == "__main__":
     startup_routine()
