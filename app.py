@@ -171,6 +171,12 @@ def tips():
         tips = db.get_tips()
         return tips
     
+@app.route("/api/randomtip", methods=["GET"])
+def random_tip():
+    db = Database("pfit.db")
+    tips = db.get_tips()
+    return tips
+    
 if __name__ == "__main__":
     startup_routine()
     app.run()
