@@ -173,12 +173,15 @@ def tips():
 
         uname = "Progression Fit"
         tip = ""
+        final = []
         for row in tips:
             if row[1] > 0:
                 uname = db.get_uname_by_uid(row[1])
             tip = row[2]
+            final.append([uname, tip])
+            uname = "Progression Fit"
 
-        return ({"user" : uname, "tip" : tip})
+        return final
     
 @app.route("/api/randomtip", methods=["GET"])
 def random_tip():

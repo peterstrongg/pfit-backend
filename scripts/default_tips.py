@@ -17,6 +17,13 @@ def get_next_uid():
         return data[-1][0] + 1
     return 1
 
+
+cursor.execute(
+            "INSERT INTO tips VALUES (?,?,?)",
+            [get_next_uid(), 1, "Test Tip"]
+        )
+db.commit()
+
 for t in tips:
     try:
         cursor.execute(
