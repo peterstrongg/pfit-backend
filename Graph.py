@@ -31,7 +31,7 @@ class Graph:
             lift = np.append(lift, log[6])
 
         if len(dates) == 0:                 # Return early if no data
-            return "assets/defaultimage.png"
+            return "assets/nodata.png"
 
         # Generating Graph
         plt.title(self.ename)
