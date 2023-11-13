@@ -13,7 +13,7 @@ from Database import Database
 from Graph import Graph
 import json
 import threading
-from random import randrange
+from random import randrange, sample
 from lib import (
     startup_routine, 
     del_graph
@@ -153,6 +153,11 @@ def share_workout():
     elif request.method == "GET":
         db = Database("pfit.db")
         sw = db.get_shared_workouts()
+        
+        sw_to_show = 10
+        if len(sw) > sw_to_show:
+            sw = sw[-abs(sw_to_show):]
+
         return sw
     
 @app.route("/api/tips", methods=["GET","POST"])
@@ -170,6 +175,10 @@ def tips():
     elif request.method == "GET":
         db = Database("pfit.db")
         tips = db.get_tips()
+
+        tips_to_show = 5
+        if len(tips) > tips_to_show:
+            tips = sample(tips, tips_to_show)
 
         uname = "Progression Fit"
         tip = ""
