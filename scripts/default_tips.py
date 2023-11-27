@@ -18,11 +18,11 @@ def get_next_uid():
     return 1
 
 
-cursor.execute(
-            "INSERT INTO tips VALUES (?,?,?)",
-            [get_next_uid(), 1, "Test Tip"]
-        )
-db.commit()
+# cursor.execute(
+#             "INSERT INTO tips VALUES (?,?,?)",
+#             [get_next_uid(), 1, "Test Tip"]
+#         )
+# db.commit()
 
 for t in tips:
     try:

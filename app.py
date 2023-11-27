@@ -154,9 +154,10 @@ def share_workout():
         db = Database("pfit.db")
         sw = db.get_shared_workouts()
         
-        sw_to_show = 10
-        if len(sw) > sw_to_show:
-            sw = sw[-abs(sw_to_show):]
+        # Uncomment to only show 10 most recent shared workouts
+        # sw_to_show = 10
+        # if len(sw) > sw_to_show:
+        #     sw = sw[-abs(sw_to_show):]
 
         return sw
     
@@ -176,9 +177,10 @@ def tips():
         db = Database("pfit.db")
         tips = db.get_tips()
 
-        tips_to_show = 5
-        if len(tips) > tips_to_show:
-            tips = sample(tips, tips_to_show)
+        # Uncomment to only show 5 randomly selected tips
+        # tips_to_show = 5
+        # if len(tips) > tips_to_show:
+        #     tips = sample(tips, tips_to_show)
 
         uname = "Progression Fit"
         tip = ""
