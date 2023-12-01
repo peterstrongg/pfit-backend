@@ -199,7 +199,7 @@ def random_tip():
     db = Database("pfit.db")
     tips = db.get_tips()
 
-    random_tip = tips[randrange(len(tips))]
+    random_tip = tips[randrange(len(tips[:3]))]
     user = "Progression Fit"
     if random_tip[1] > 0:
         user = db.get_uname_by_uid(random_tip[1])
