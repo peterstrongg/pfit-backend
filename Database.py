@@ -16,7 +16,7 @@ class Database:
             uid = self.curs.fetchone()[0]
             return uid
         except TypeError:
-            return 0
+            return -1
 
     def add_user(self, username, password):
         uid = self.__get_next_uid("users")
